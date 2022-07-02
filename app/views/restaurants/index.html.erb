@@ -1,0 +1,18 @@
+<div class="container">
+  <h1 class="text-center my-5">Today's fancy restaurants 🍔</h1>
+  <div class="row">
+    <% @restaurants.each_with_index do |restaurant,index| %>
+      <div class="col-6 col-lg-4">
+        <div class="card mb-3">
+        <img src="https://loremflickr.com/320/240/restaurant?random=<%= index %>" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= restaurant.name %></h5>
+          <p class="card-text"><%= restaurant.address %></p>
+          <p class="card-text"><%= "⭐️" * restaurant.rating %></p>
+          <%= link_to "Check it out!", restaurant_path(restaurant), class: "btn btn-primary" %>
+        </div>
+      </div>
+      </div>
+    <% end %>
+  </div>
+</div>
