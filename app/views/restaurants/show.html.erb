@@ -1,7 +1,14 @@
 <div class="container">
   <h1 class="my-5"><%= @restaurant.name %></h1>
   <h2 class="fst-italic"><%= @restaurant.address %></h2>
-  <p><%= "⭐️" * @restaurant.rating %></p>
+  <p>
+    <% @restaurant.rating.times do %>
+      <i class="fas fa-star"></i>
+    <% end %>
+    <% (5 - @restaurant.rating).times do %>
+      <i class="far fa-star"></i>
+    <% end %>
+  </p>
   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, in eos, impedit, odio distinctio ea rem facere quod nisi repellendus ducimus temporibus explicabo? Enim dolores animi id, eaque sapiente facere.</p>
   <%= link_to "Edit", edit_restaurant_path(@restaurant),  class: "btn btn-outline-primary" %>
   <%= link_to "Delete", restaurant_path(@restaurant), class: "btn btn-outline-danger", method: 'delete', data: { confirm: 'Are you sure?' } %>
