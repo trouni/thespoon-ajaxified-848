@@ -1,16 +1,32 @@
 <div class="container">
-  <h1 class="my-5"><%= @restaurant.name %></h1>
-  <h2 class="fst-italic"><%= @restaurant.address %></h2>
-  <p>
-    <% @restaurant.rating.times do %>
-      <i class="fas fa-star"></i>
-    <% end %>
-    <% (5 - @restaurant.rating).times do %>
-      <i class="far fa-star"></i>
-    <% end %>
-  </p>
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga, in eos, impedit, odio distinctio ea rem facere quod nisi repellendus ducimus temporibus explicabo? Enim dolores animi id, eaque sapiente facere.</p>
-  <%= link_to "Edit", edit_restaurant_path(@restaurant),  class: "btn btn-outline-primary" %>
-  <%= link_to "Delete", restaurant_path(@restaurant), class: "btn btn-outline-danger", method: 'delete', data: { confirm: 'Are you sure?' } %>
-  <%= link_to "Back", restaurants_path, class: "btn btn-primary" %>
-</div>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <%= image_tag "http://source.unsplash.com/collection/3099344/1000x500", width: "100%", class: "border shadow mb-5" %>
+      <h3>Reviews for <%= @restaurant.name %></h3>
+      <div data-controller="reviews">
+        <%= render 'reviews/form', restaurant: @restaurant, review: @review %>
+        <div data-reviews-target="list">
+          <%= render @restaurant.reviews.order(created_at: :desc) %>
+          <%# @restaurant.reviews.order(created_at: :desc).each do |review| %>
+            <%#= render 'reviews/review', review: review %>
+            <%# end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="card p-4">
+          <h1><%= @restaurant.name %></h1>
+          <p class="fst-italic"><small><%= @restaurant.address %></small></p>
+          <p>
+            <% @restaurant.rating.times do %>
+              <i class="fas fa-star"></i>
+            <% end %>
+            <% (5 - @restaurant.rating).times do %>
+              <i class="far fa-star"></i>
+            <% end %>
+          </p>
+          <p><%= @restaurant.description %></p>
+        </div>
+      </div>
+    </div>
+  </div>

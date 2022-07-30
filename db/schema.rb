@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2022_07_29_090113) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "address"
     t.string "description"
-    t.string "category"
   end
 
   create_table "reviews", force: :cascade do |t|
